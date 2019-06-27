@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30f7c28f-6ba9-4637-967c-ea8b0788bccb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Posts/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Posts/posts/operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/posts/operations.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Posts/posts/operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="462">
+              <caret line="176" selection-start-line="176" selection-end-line="176" />
               <folding>
                 <element signature="e#0#78#0" expanded="true" />
               </folding>
@@ -154,8 +155,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Posts/posts/operations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="462">
+          <caret line="176" selection-start-line="176" selection-end-line="176" />
           <folding>
             <element signature="e#0#78#0" expanded="true" />
           </folding>

@@ -1,5 +1,6 @@
 from .models import User, Posts, CommentLikes, Comments, REACTION_TYPES, Likes
 from django.utils import timezone as t
+from django.db.models import Q
 
 
 reactions_types = {"NO": "NONE", "LI": "LIKE", "LO": "LOVE", "SA":"SAD", "WO": "WOW", "AN": "ANGRY", "HA": "HAHA"}
@@ -95,7 +96,7 @@ def react_to_post(user_id, post_id, reaction_type):
     try:
         react = Likes.objects.get(user_id=user, post_id=post)
         if react.reaction == reaction_type:
-            reaction_type = "NO"
+            react.delete()
         else:
             reaction_type = reaction_type
         react.reaction = reaction_type
@@ -112,7 +113,7 @@ def react_to_comment(user_id, comment_id, reaction_type):
     try:
         react = CommentLikes.objects.get(user_id=user, comment_id=comment)
         if react.reaction == reaction_type:
-            reaction_type = "NO"
+            react.delete()
         else:
             reaction_type = reaction_type
         react.reaction = reaction_type
@@ -136,9 +137,10 @@ def get_posts_with_more_positive_reactions():
     posts = Posts.objects.all()
     positive_posts = []
     for post in posts:
-        p = get_post(post.post_id)
-        reactions = p['reactions']
-        print(reactions)
+        p = Posts.objects.get(post_id=post.post_id)
+        l = Likes.objects.filter(post_id=p)
+        reactions = l.values('reaction')
+        reactions = getreactiontype(reactions)
         positive_reactions = ["LIKE", "LOVE", "WOW", "HAHA"]
         negative_reactions = ["SAD", "ANGRY"]
         positive = 0
@@ -160,3 +162,16 @@ def get_posts_reacted_by_user(user_id):
     for like in likes:
         posts_list.append(get_post(like.post_id.post_id))
     return posts_list
+
+
+def get_reactions_to_post(post_id):
+    post = Posts.objects.get(post_id=post_id)
+    likes = Likes.objects.filter(post_id=post)
+    reactions = []
+    for like in likes:
+        post_reactions = {"user_id": like.user_id.user_id, "name": like.user_id.user_name,
+                          "profile_pic": like.user_id.profile_pic, "reaction": like.reaction}
+        reactions.append(post_reactions)
+    return reactions
+
+
