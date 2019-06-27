@@ -129,7 +129,7 @@ def get_user_posts(user_id):
     for post in posts:
         posts_list.append(get_post(post.post_id))
 
-    print(posts_list)
+    return posts_list
 
 
 def get_posts_with_more_positive_reactions():
@@ -150,7 +150,13 @@ def get_posts_with_more_positive_reactions():
                 negative += 1
         if positive > negative:
             positive_posts.append(post.post_id)
-    print(positive_posts)
+    return positive_posts
 
 
-def get_posts
+def get_posts_reacted_by_user(user_id):
+    user = User.objects.get(user_id=user_id)
+    likes = Likes.objects.filter(user_id=user)
+    posts_list = []
+    for like in likes:
+        posts_list.append(get_post(like.post_id.post_id))
+    return posts_list
